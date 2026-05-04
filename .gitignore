@@ -1,0 +1,15 @@
+# Build setting
+**/node_modules/
+**/build/
+**/build-*/
+**/.**
+**/*.log
+**/*.env
+**/*.tsbuildinfo
+!.gitignore
+
+# Work space setting
+!.vscode/
+
+# Test setting
+test.ts

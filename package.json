@@ -1,0 +1,27 @@
+{
+  "name": "vortez-io",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Binary WebSocket protocol for multiplexed events, requests, responses, and errors in Vortez or other applications.",
+  "main": "index.js",
+  "scripts": {
+    "build": "bash scripts/build.sh"
+  },
+  "keywords": [
+    "vortez",
+    "vortez-io",
+    "websocket",
+    "protocol",
+    "binary protocol",
+    "request response",
+    "event-driven",
+    "messaging",
+    "typescript",
+    "realtime"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@netfeez/common": "^3.1.1"
+  }
+}
