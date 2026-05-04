@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Binary WebSocket protocol for multiplexed events, requests, responses, and errors in Vortez or other applications.",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "build": "bash scripts/build.sh"
   },
@@ -19,7 +19,15 @@
     "typescript",
     "realtime"
   ],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NetFeez/vortez-io.git"
+  },
+  "author": {
+    "name": "NetFeez",
+    "email": "netfeez.dev@gmail.com",
+    "url": "https://netfeez.github.io"
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "@netfeez/common": "^3.1.1"
