@@ -1,9 +1,13 @@
 {
   "name": "vortez-io",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "Binary WebSocket protocol for multiplexed events, requests, responses, and errors in Vortez or other applications.",
   "main": "build/index.js",
+  "exports": {
+    ".": { "import": "./build/index.js" },
+    "./*": { "import": "./build/*" }
+  },
   "scripts": {
     "build": "bash scripts/build.sh"
   },
