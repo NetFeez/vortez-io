@@ -1,19 +1,25 @@
+/**
+ * @module vortez-io
+ * @author NetFeez <netfeez.dev@gmail.com>
+ * @license Apache-2.0
+ * @description Tracks pending requests, timeouts, and response handling for VIO.
+ */
 import { Events } from "@netfeez/common";
 
 import UUID from "./support/UUID.js";
 import VIOError from "./VIOError.js";
 
 import type Frame from "./Frame.js";
-import type Isomorphic from "./Isomorphic.js";
+import type Isomorphic from "./support/Isomorphic.js";
 
-export class RequestManager<T extends any> extends Events<RequestManager.EventMap> {
-    protected pending: Map<string, RequestManager.PendingEntry<T>> = new Map();
+export class RequestManager<TimeoutType extends any> extends Events<RequestManager.EventMap> {
+    protected pending: Map<string, RequestManager.PendingEntry<TimeoutType>> = new Map();
 
-    protected setTimeout: Isomorphic.setTimeout<T>;
-    protected clearTimeout: Isomorphic.clearTimeout<T>;
+    protected setTimeout: Isomorphic.setTimeout<TimeoutType>;
+    protected clearTimeout: Isomorphic.clearTimeout<TimeoutType>;
     protected createUUID: Isomorphic.createUUID;
 
-    public constructor(dependencies: RequestManager.DEPENDENCIES<T>) { super();
+    public constructor(dependencies: Isomorphic.DependencyList<TimeoutType>) { super();
         this.setTimeout = dependencies.setTimeout;
         this.clearTimeout = dependencies.clearTimeout;
         this.createUUID = dependencies.createUUID || UUID.create;
@@ -29,7 +35,7 @@ export class RequestManager<T extends any> extends Events<RequestManager.EventMa
         const { timeoutMs = 30000 } = options;
         const uuid = this.createUUID();
         return new Promise((resolve, reject) => {
-            const timeout: T = this.setTimeout(() => {
+            const timeout: TimeoutType = this.setTimeout(() => {
                 this.pending.delete(uuid);
                 reject(new VIOError(VIOError.Code.INVALID_DATA, 'Request timed out'));
             }, timeoutMs);
@@ -65,11 +71,6 @@ export class RequestManager<T extends any> extends Events<RequestManager.EventMa
     }
 }
 export namespace RequestManager {
-    export interface DEPENDENCIES<T extends any> {
-        setTimeout: Isomorphic.setTimeout<T>;
-        clearTimeout: Isomorphic.clearTimeout<T>;
-        createUUID?: Isomorphic.createUUID;
-    }
     export namespace Response {
         export type Base = { mode: Frame.Mode };
         export interface Binary extends Base {
@@ -96,12 +97,12 @@ export namespace RequestManager {
      * Each entry contains the resolve and reject functions for the Promise associated with the request, as well as a timeout identifier if a timeout mechanism is implemented.
      * The resolve function is called with the response data when a successful response is received, while the reject function is called with an error if an error occurs or if a timeout is reached.
      * The timeout field can be used to store the identifier returned by a setTimeout function, allowing for the implementation of request timeouts where the Promise is rejected if a response is not received within a certain timeframe.
-     * @template T The type of the timeout identifier, which can vary depending on the environment (e.g., NodeJS.Timeout in Node.js or number in browsers).
+     * @template TimeoutType The type of the timeout identifier, which can vary depending on the environment (e.g., NodeJS.Timeout in Node.js or number in browsers).
      */
-    export interface PendingEntry<T> {
+    export interface PendingEntry<TimeoutType> {
         resolve: (value: Response) => void;
         reject: (reason: VIOError) => void;
-        timeout: T;
+        timeout: TimeoutType;
     }
 
     export interface SendOptions {

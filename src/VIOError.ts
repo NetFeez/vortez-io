@@ -1,3 +1,9 @@
+/**
+ * @module vortez-io
+ * @author NetFeez <netfeez.dev@gmail.com>
+ * @license Apache-2.0
+ * @description Standard error type and error codes used by the VIO library.
+ */
 export class VIOError extends Error {
     public name: string = 'VIOError';
     public code: VIOError.Code;

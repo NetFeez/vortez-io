@@ -1,6 +1,6 @@
 /**
  * @module vortez-io
- * @author NetFeez <netfeez.dev@gemail.com>
+ * @author NetFeez <netfeez.dev@gmail.com>
  * @license Apache-2.0
  * @description Isomorphic UUID v4 generator.
  *

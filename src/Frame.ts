@@ -1,6 +1,6 @@
 /**
  * @module vortez-io
- * @author NetFeez <netfeez.dev@gemail.com>
+ * @author NetFeez <netfeez.dev@gmail.com>
  * @license Apache-2.0
  * @description Implements the core Frame structure of the Vortez IO protocol, including encoding and decoding logic for binary frames.
  *              The Frame class provides static methods to encode and decode frames according to the protocol specification, handling various frame types, modes, and identifier formats.

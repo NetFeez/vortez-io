@@ -1,10 +1,8 @@
 /**
  * @module vortez-io
- * @author NetFeez <netfeez.dev@gemail.com>
+ * @author NetFeez <netfeez.dev@gmail.com>
  * @license Apache-2.0
- * @description Provides encoding and decoding functionality for variable-length integers (varints) used in the Vortez IO protocol.
- *              Varints are a compact way to encode integers, where smaller numbers take fewer bytes. Each byte uses the lower 7 bits to store data and the highest bit as a continuation flag (1 if more bytes follow, 0 if this is the last byte).
- *              This module includes methods for reading varints from a Uint8Array and writing numbers as varints into a Uint8Array, with error handling for invalid input and buffer overflows.
+ * @description Varint read and write helpers for the Vortez IO protocol.
  */
 import VIOError from "../VIOError.js";
 

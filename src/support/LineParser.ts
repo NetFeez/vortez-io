@@ -1,10 +1,8 @@
 /**
  * @module vortez-io
- * @author NetFeez <netfeez.dev@gemail.com>
+ * @author NetFeez <netfeez.dev@gmail.com>
  * @license Apache-2.0
- * @description Provides encoding and decoding functionality for line-based content used in the Vortez IO protocol.
- *              The LineCodec class allows for converting between a ContentMap (a mapping of string keys to string values) and a line-based text format where each key-value pair is represented as a block of text with specific formatting rules.
- *              This is useful for encoding structured data in a human-readable format that can be easily transmitted and parsed within the Vortez IO protocol.
+ * @description Line-based content encoder and decoder for VIO.
  */
 import UTF8Codec from "./UTF8Codec.js";
 

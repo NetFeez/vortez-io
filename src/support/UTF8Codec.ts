@@ -1,13 +1,8 @@
 /**
  * @module vortez-io
- * @author NetFeez <netfeez.dev@netfeez.dev>
+ * @author NetFeez <netfeez.dev@gmail.com>
  * @license Apache-2.0
- * @description UTF-8 encoder/decoder optimized for:
- *              - predictable memory usage (pre-allocation)
- *              - safe decoding (malformed/truncated input)
- *              - zero external dependencies
- *
- * ⚠️ Fully standards-compliant behavior for replacement (U+FFFD)
+ * @description UTF-8 encoder and decoder with replacement-character handling.
  */
 export class UTF8Codec {
     private static readonly REPLACEMENT_CHAR = '\uFFFD';
