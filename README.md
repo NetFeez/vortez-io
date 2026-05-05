@@ -90,6 +90,10 @@ The protocol is described in detail in [PROTOCOL.md](PROTOCOL.md). In short:
 - `EVENT` frames use string identifiers
 - `ERROR` frames can be protocol-level (`NONE`) or request-bound (`UUID`)
 
+## Architecture Guide
+
+For a higher-level view of the runtime layers, message flow, and the role of `VIO`, `Frame`, `RequestManager`, and `VIOStrict`, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
 ## Development
 
 ```bash
