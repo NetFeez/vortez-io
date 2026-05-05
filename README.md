@@ -100,6 +100,7 @@ The protocol is described in detail in [PROTOCOL.md](PROTOCOL.md). In short:
 - [README.md](README.md): project overview, install, and quick start.
 - [PROTOCOL.md](PROTOCOL.md): wire format and protocol rules.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): runtime layers and message flow.
+- [docs/VIOStrict.md](docs/VIOStrict.md): typed wrapper example and schema map wiring.
 
 ## Development
 
