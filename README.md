@@ -1,6 +1,6 @@
-# Vortez IO Protocol
+# Vortez IO
 
-`vortez-io-protocol` is a small TypeScript library for encoding and decoding the Vortez IO binary frame format used over WebSocket connections. It implements the protocol described in [PROTOCOL.md](PROTOCOL.md) and provides helpers for request/response correlation, event delivery, and frame validation.
+`vortez-io` is a small TypeScript library for encoding and decoding the Vortez IO binary frame format used over WebSocket connections. It implements the protocol described in [PROTOCOL.md](PROTOCOL.md) and provides helpers for request/response correlation, event delivery, and strict frame validation.
 
 ## Features
 
@@ -10,6 +10,7 @@
 - Support for `BINARY`, `JSON`, `LINE`, and `CUSTOM` payload modes
 - Strict protocol validation with typed errors
 - Higher-level typed wrapper via `VIOStrict`
+- Transport-agnostic runtime with a small, composable API surface
 
 ## Installation
 
@@ -22,8 +23,7 @@ The library is published from the TypeScript source in this repository and targe
 ## Quick Start
 
 ```ts
-import VIO from './build/VIO.js';
-import VIOError from './build/VIOError.js';
+import VIO, { VIOError } from 'vortez-io';
 
 const vio = new VIO({
 	setTimeout,
@@ -66,6 +66,7 @@ The main transport-aware protocol runtime.
 - `event(name, data)`: send an event frame
 - `handle(data)`: decode an incoming frame and dispatch it
 - `transport`: event emitter that exposes outgoing frames through `send`
+- `raw(data)`: send transport-level bytes without higher-level framing
 
 ### `Frame`
 
@@ -80,6 +81,10 @@ Use this when you need direct access to protocol bytes instead of the higher-lev
 
 Typed wrapper for validating request and event payloads with schemas from `@netfeez/common`.
 
+## Architecture Guide
+
+For a higher-level view of the runtime layers, message flow, and the role of `VIO`, `Frame`, `RequestManager`, and `VIOStrict`, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
 ## Protocol Summary
 
 The protocol is described in detail in [PROTOCOL.md](PROTOCOL.md). In short:
@@ -90,9 +95,11 @@ The protocol is described in detail in [PROTOCOL.md](PROTOCOL.md). In short:
 - `EVENT` frames use string identifiers
 - `ERROR` frames can be protocol-level (`NONE`) or request-bound (`UUID`)
 
-## Architecture Guide
+## Documentation Map
 
-For a higher-level view of the runtime layers, message flow, and the role of `VIO`, `Frame`, `RequestManager`, and `VIOStrict`, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+- [README.md](README.md): project overview, install, and quick start.
+- [PROTOCOL.md](PROTOCOL.md): wire format and protocol rules.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): runtime layers and message flow.
 
 ## Development
 
