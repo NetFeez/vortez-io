@@ -14,7 +14,7 @@ import Frame from "../../Frame.js";
 
 export const RRSchema = Schema.fromObject({
     name: { type: 'string', required: true },
-    content: { type: 'object', required: true }
+    content: { type: 'object', allowAdditionalProperties: true, required: true }
 });
 
 export class RequestChannel<
