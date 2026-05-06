@@ -44,7 +44,7 @@ export class EventChannel<
      * @param data The data to send with the event. Must conform to the schema defined for the event in the OEMap.
      * @throws VIOError if the event name is not recognized or if the data does not conform to the schema.
      */
-    public override send<Name extends string & keyof OEMap>(name: Name, data: OEMap[Name]['infer']): void {
+    public override send<Name extends string & keyof OEMap>(name: Name, data: OEMap[Name]['inferToProcess']): void {
         const schema = this.outEMap[name];
         if (!schema) throw new VIOError(VIOError.Code.UNKNOWN_TYPE, `Unknown event type: ${String(name)}`);
         const processedData = schema.processData(data);
