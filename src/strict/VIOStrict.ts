@@ -4,7 +4,7 @@
  * @license Apache-2.0
  * @description Strict typed wrapper around VIO event, request, and transport channels.
  */
-import type Isomorphic from "../support/Isomorphic.js";
+import Isomorphic from "../support/Isomorphic.js";
 
 import { Events } from "@netfeez/common";
 
@@ -73,6 +73,10 @@ export class VIOStrict<
     public raw(data: ArrayBuffer | Uint8Array): void { this.transport.send(data); }
 }
 export namespace VIOStrict {
+    export import EMap = EventChannel.EMap;
+    export import RRMap = RequestChannel.RRMap;
+    export import DependencyList = Isomorphic.DependencyList;
+    
     export type EventMap = {
         raw: [data: Frame<'RAW'>];
         error: [error: VIOError];
